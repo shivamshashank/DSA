@@ -1,0 +1,279 @@
+from typing import List
+
+
+def productExceptSelf(nums: List[int]) -> List[int]:
+    """
+    Input: nums = [1, 2, 3, 4]
+    Output: [24, 12, 8, 6]
+    """
+    n = len(nums)
+    ans = [1] * n
+
+    for i in range(n - 1):
+        ans[i + 1] = ans[i] * nums[i]
+
+    right = 1
+
+    for i in range(n - 1, -1, -1):
+        ans[i] *= right
+        right *= nums[i]
+
+    return ans
+
+
+def twoSum(nums: List[int], target: int) -> List[int]:
+    """
+    Input: nums = [2, 7, 11, 15], target = 9
+    Output: [0, 1]
+    """
+    seen = {}
+
+    for i, num in enumerate(nums):
+        if target - num in seen:
+            return [i, seen[target - num]]
+
+        seen[num] = i
+
+    return []
+
+
+def containsDuplicate(nums: List[int]) -> bool:
+    """
+    Input: nums = [1, 2, 3, 1]
+    Output: True
+    """
+    return len(set(nums)) != len(nums)
+
+
+class NumArray:
+    """
+    Input: ["NumArray", "sumRange"], [[[-2, 0, 3, -5, 2, -1]], [0, 2]]
+    Output: [None, 1]
+    """
+
+    def __init__(self, nums: List[int]):
+        self.prefix = {-1: 0}
+
+        for i, num in enumerate(nums):
+            self.prefix[i] = self.prefix[i - 1] + num
+
+    def sumRange(self, left: int, right: int) -> int:
+        return self.prefix[right] - self.prefix[left - 1]
+
+
+def subArraySum(nums: List[int], k: int) -> int:
+    """
+    Input: nums = [1, 1, 1], k = 2
+    Output: 2
+    """
+    freq = {0: 1}  # stores prefix sum : frequency
+    curr = 0
+    count = 0
+    for num in nums:
+        curr += num
+        count += freq.get(curr - k, 0)
+        freq[curr] = freq.get(curr, 0) + 1
+    return count
+
+
+def checkSubarraySum(nums: List[int], k: int) -> bool:
+    """
+    Input: nums = [23, 2, 4, 6, 7], k = 6
+    Output: True
+    """
+    prefixSum = {0: -1}  # stores remainder : index
+    curr = 0
+
+    for i, num in enumerate(nums):
+        curr += num
+        remainder = curr % k
+        if remainder in prefixSum:
+            if i - prefixSum[remainder] > 1:
+                return True
+        else:
+            prefixSum[remainder] = i
+
+    return False
+
+
+def maxSubArray(nums: List[int]) -> int:
+    """
+    Input: nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+    Output: 6
+    """
+    max_sum = float("-inf")
+    curr_sum = 0
+
+    for num in nums:
+        curr_sum += num
+        max_sum = max(max_sum, curr_sum)
+
+        if curr_sum < 0:
+            curr_sum = 0
+
+    return int(max_sum)
+
+
+def mergeIntervals(intervals: List[List[int]]) -> List[List[int]]:
+    """
+    Input: intervals = [[1, 3], [2, 6], [8, 10], [15, 18]]
+    Output: [[1, 6], [8, 10], [15, 18]]
+    """
+    intervals.sort(key=lambda x: x[0])
+
+    ans: List[List[int]] = []
+
+    for interval in intervals:
+        if len(ans) == 0 or ans[-1][1] < interval[0]:
+            ans.append(interval)
+        else:
+            ans[-1][1] = max(ans[-1][1], interval[1])
+
+    return ans
+
+
+def dailyTemperatures(temperatures: List[int]) -> List[int]:
+    """
+    Input: temperatures = [73, 74, 75, 71, 69, 72, 76, 73]
+    Output: [1, 1, 4, 2, 1, 1, 0, 0]
+    """
+    n = len(temperatures)
+    ans = [0] * n
+    stack = []
+
+    for i, temp in enumerate(temperatures):
+        while stack and temperatures[stack[-1]] < temp:
+            prev = stack.pop()
+            ans[prev] = i - prev
+
+        stack.append(i)
+
+    return ans
+
+
+def largestRectangleArea(heights: List[int]) -> int:
+    """
+    Input: heights = [2, 1, 5, 6, 2, 3]
+    Output: 10
+    """
+    stack = []  # (start_index, height)
+    max_area = 0
+
+    for i, h in enumerate(heights):
+        start = i
+        while stack and stack[-1][1] > h:
+            idx, height = stack.pop()
+            max_area = max(max_area, height * (i - idx))
+            start = idx
+        stack.append((start, h))
+
+    n = len(heights)
+    for idx, height in stack:
+        max_area = max(max_area, height * (n - idx))
+
+    return max_area
+
+
+def setZeroes(matrix: List[List[int]]) -> None:
+    """
+    Input: matrix = [[1, 1, 1], [1, 0, 1], [1, 1, 1]]
+    Output: [[1, 0, 1], [0, 0, 0], [1, 0, 1]]
+    """
+    rows, cols = set(), set()
+    m, n = len(matrix), len(matrix[0])
+
+    for i in range(m):
+        for j in range(n):
+            if matrix[i][j] == 0:
+                rows.add(i)
+                cols.add(j)
+
+    for i in range(m):
+        for j in range(n):
+            if i in rows or j in cols:
+                matrix[i][j] = 0
+
+
+def moveZeroes(nums: List[int]) -> None:
+    """
+    Input: nums = [0, 1, 0, 3, 12]
+    Output: [1, 3, 12, 0, 0]
+    """
+    write = 0
+
+    for read, num in enumerate(nums):
+        if num != 0:
+            nums[write], nums[read] = nums[read], nums[write]
+            write += 1
+
+
+class EncodeDecodeStrings:
+    """
+    Input: strs = ["lint", "code", "love", "you"]
+    Output: ["lint", "code", "love", "you"]
+    """
+
+    def encode(self, strs: List[str]) -> str:
+        ans = ""
+        for s in strs:
+            ans += f"{len(s)}#{s}"
+        return ans
+
+    def decode(self, s: str) -> List[str]:
+        ans = []
+        length = ""
+        i = 0
+
+        while True:
+            if i == len(s):
+                return ans
+
+            if s[i] == "#":
+                ans.append(s[i + 1 : i + 1 + int(length)])
+                i = i + 1 + int(length)
+                length = ""
+            else:
+                length += s[i]
+                i += 1
+
+
+def longestConsecutive(nums: List[int]) -> int:
+    """
+    Input: nums = [100, 4, 200, 1, 3, 2]
+    Output: 4
+    """
+    nums = set(nums)
+
+    ans = 0
+
+    for num in nums:
+        if num - 1 not in nums:
+            curr = 1
+
+            while num + curr in nums:
+                curr += 1
+
+            ans = max(ans, curr)
+
+    return ans
+
+
+def largestNumber(nums: List[int]) -> str:
+    """
+    Input: nums = [10, 2]
+    Output: "210"
+    """
+    n = len(nums)
+
+    for i in range(n - 1):
+        for j in range(i + 1, n):
+            a = str(nums[i])
+            b = str(nums[j])
+
+            if a + b < b + a:
+                nums[i], nums[j] = nums[j], nums[i]
+
+    if nums[0] == 0:
+        return "0"
+
+    return "".join(map(str, nums))
