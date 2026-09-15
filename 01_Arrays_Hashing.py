@@ -71,8 +71,8 @@ def subArraySum(nums: List[int], k: int) -> int:
     count = 0
     for num in nums:
         curr += num
-        count += freq.get(curr - k, 0)
         freq[curr] = freq.get(curr, 0) + 1
+        count += freq.get(curr - k, 0)
     return count
 
 
@@ -112,24 +112,6 @@ def maxSubArray(nums: List[int]) -> int:
             curr_sum = 0
 
     return int(max_sum)
-
-
-def mergeIntervals(intervals: List[List[int]]) -> List[List[int]]:
-    """
-    Input: intervals = [[1, 3], [2, 6], [8, 10], [15, 18]]
-    Output: [[1, 6], [8, 10], [15, 18]]
-    """
-    intervals.sort(key=lambda x: x[0])
-
-    ans: List[List[int]] = []
-
-    for interval in intervals:
-        if len(ans) == 0 or ans[-1][1] < interval[0]:
-            ans.append(interval)
-        else:
-            ans[-1][1] = max(ans[-1][1], interval[1])
-
-    return ans
 
 
 def dailyTemperatures(temperatures: List[int]) -> List[int]:

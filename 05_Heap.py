@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import Counter
 import heapq
 from typing_extensions import List
 
@@ -34,10 +34,7 @@ def topKFrequentElements(nums: List[int], k: int) -> List[int]:
     """
     heap = []
 
-    freq = defaultdict(int)
-
-    for num in nums:
-        freq[num] += 1
+    freq = Counter(nums)
 
     ans = []
 

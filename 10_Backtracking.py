@@ -1,3 +1,4 @@
+from collections import Counter
 from typing import List
 
 
@@ -74,18 +75,15 @@ def permuteUnique(nums: List[int]) -> List[List[int]]:
     """
     ans = []
 
-    freq = {}
-
-    for num in nums:
-        freq[num] = freq.get(num, 0) + 1
+    freq = Counter(nums)
 
     def dfs(curr: List[int]) -> None:
         if len(curr) == len(nums):
             ans.append(curr)
             return
 
-        for num in freq:
-            if freq[num] > 0:
+        for num, count in freq.items():
+            if count > 0:
                 freq[num] -= 1
                 dfs(curr + [num])
                 freq[num] += 1
@@ -192,6 +190,7 @@ def wordBreak(s: str, wordDict: List[str]) -> bool:
     Input: s = "leetcode", wordDict = ["leet", "code"]
     Output: True
     """
+
     def dfs(i: int, curr: List[str]) -> bool:
         if i == len(s):
             return True

@@ -1,8 +1,6 @@
-from __future__ import annotations
 from typing import Tuple, Set, List, Dict
 from collections import defaultdict, deque
 import random
-
 
 
 class Node:
@@ -178,6 +176,7 @@ class NestedIterator:
     Input: nestedList = [[1, 1], 2, [1, 1]]
     Output: [1, 1, 2, 1, 1]
     """
+
     def __init__(self, nestedList: List[NestedInteger]):
         self.stack: List[int] = []
 
@@ -215,7 +214,10 @@ class Logger:
         self.msg_to_time: Dict[str, int] = {}
 
     def shouldPrintMessage(self, timestamp: int, message: str) -> bool:
-        if message not in self.msg_to_time or timestamp - self.msg_to_time[message] >= 10:
+        if (
+            message not in self.msg_to_time
+            or timestamp - self.msg_to_time[message] >= 10
+        ):
             self.msg_to_time[message] = timestamp
             return True
         return False

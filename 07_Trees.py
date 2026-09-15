@@ -5,7 +5,12 @@ from typing import Optional, Tuple, List
 
 
 class TreeNode:
-    def __init__(self, val: int=0, left: Optional['TreeNode']=None, right: Optional['TreeNode']=None):
+    def __init__(
+        self,
+        val: int = 0,
+        left: Optional["TreeNode"] = None,
+        right: Optional["TreeNode"] = None,
+    ):
         self.val = val
         self.left = left
         self.right = right
@@ -70,6 +75,7 @@ def diameterOfBinaryTree(root: Optional[TreeNode]) -> int:
     Input: root = [1, 2, 3, 4, 5]
     Output: 3
     """
+
     def dfs(root: Optional[TreeNode]) -> Tuple[int, int]:
         if root is None:
             return (0, 0)
@@ -106,6 +112,7 @@ def isValidBST(root: Optional[TreeNode]) -> bool:
     Input: root = [2, 1, 3]
     Output: True
     """
+
     def dfs(root: Optional[TreeNode], left: int, right: int) -> bool:
         if root is None:
             return True
@@ -199,6 +206,7 @@ def hasPathSum(root: Optional[TreeNode], targetSum: int) -> bool:
     Input: root = [5, 4, 8, 11, None, 13, 4, 7, 2, None, None, None, 1], targetSum = 22
     Output: True
     """
+
     def dfs(root: Optional[TreeNode], total: int) -> bool:
         if root is None:
             return False
@@ -310,10 +318,13 @@ class SerializeDeserialize:
 
     def deserialize(self, data: str) -> Optional[TreeNode]:
         preorderList = data.split(",")
-        preorderList.reverse()
+        i = 0
 
         def dfs() -> Optional[TreeNode]:
-            value = preorderList.pop()
+            nonlocal i
+
+            value = preorderList[i]
+            i += 1
 
             if value == "None":
                 return None
