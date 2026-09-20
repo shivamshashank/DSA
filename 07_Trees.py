@@ -406,3 +406,50 @@ def maxPathSum(root: Optional[TreeNode]) -> int:
     dfs(root)
 
     return ans
+
+
+def findDuplicateSubtrees(root: TreeNode | None) -> list[TreeNode | None]:
+    """
+    Input: root = [1, 2, 3, 4, None, 2, 4, None, None, 4]
+    Output: [2, 4]
+    """
+
+    ans = []
+
+    freq = {}
+
+    def dfs(root: TreeNode | None) -> tuple | None:
+        if root is None:
+            return None
+
+        left_subtree = dfs(root.left)
+        right_subtree = dfs(root.right)
+
+        curr_subtree = (root.val, left_subtree, right_subtree)
+
+        freq[curr_subtree] = freq.get(curr_subtree, 0) + 1
+
+        if freq[curr_subtree] == 2:
+            ans.append(root)
+
+        return curr_subtree
+
+    dfs(root)
+
+    return ans
+
+
+def mergeTwoBST(r1: TreeNode | None, r2: TreeNode | None) -> list[int]:
+    """
+    Input: r1 = [1, 3, 5], r2 = [2, 4, 6]
+    Output: [1, 2, 3, 4, 5, 6]
+    """
+    arr1: list[int] = []
+    arr2: list[int] = []
+
+    inorder(r1, arr1)
+    inorder(r2, arr2)
+
+    # merge_two_sorted_arrays(arr1, arr2)
+
+    return arr1 + arr2

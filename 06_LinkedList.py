@@ -140,3 +140,40 @@ def reorderList(head: Optional[ListNode]) -> None:
 
         first = firstNext
         second = secondNext
+
+
+def mergeInBetween(list1: ListNode, a: int, b: int, list2: ListNode) -> ListNode:
+    """
+    Input: list1 = [1,2,3,4,5,6], a = 2, b = 4, list2 = [1000000,1000001,1000002]
+    Output: [1,2,1000000,1000001,1000002,5,6]
+    """
+    startNode = None
+    endNode = None
+
+    head = list1
+    count = 0
+
+    while head:
+        if count == a - 1:
+            startNode = head
+
+        if count == b + 1:
+            endNode = head
+            break
+
+        head = head.next
+        count += 1
+
+    # connect start of list1 to list2
+    startNode.next = list2
+
+    # find tail of list2
+    head = list2
+
+    while head.next:
+        head = head.next
+
+    # connect tail of list2 to remaining list1
+    head.next = endNode
+
+    return list1

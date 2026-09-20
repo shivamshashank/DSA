@@ -259,3 +259,66 @@ def largestNumber(nums: List[int]) -> str:
         return "0"
 
     return "".join(map(str, nums))
+
+
+def firstMissingPositive(nums: List[int]) -> int:
+    """
+    Input: nums = [1, 2, 0]
+    Output: 3
+    """
+    n = len(nums)
+
+    # Loop 1: Remove numbers that cannot be the answer
+    for i in range(n):
+        if nums[i] <= 0 or nums[i] > n:
+            nums[i] = n + 1
+
+    # Loop 2: Mark every positive number that exists
+    for i in range(n):
+        num = abs(nums[i])
+
+        if 1 <= num <= n:
+            index = num - 1
+            nums[index] = -abs(nums[index])
+
+    # Loop 3: Find the first number that was not marked
+    for i in range(n):
+        if nums[i] > 0:
+            return i + 1
+
+    return n + 1
+
+
+def maxIndexDiff(arr: list[int]) -> int:
+    """
+    Input: arr = [34, 8, 10, 3, 2, 80, 30, 33, 1]
+    Output: 6
+    Explanation: The maximum value of j - i such that arr[i] <= arr[j] is 6.
+                 j = 7, i = 1  (arr[1] = 8, arr[7] = 33)
+                 j = 8, i = 0  (arr[0] = 34, arr[8] = 1)
+    """
+    n = len(arr)
+
+    leftMin = [0] * n
+    rightMax = [0] * n
+
+    leftMin[0] = arr[0]
+    for i in range(1, n):
+        leftMin[i] = min(arr[i], leftMin[i - 1])
+
+    rightMax[n - 1] = arr[n - 1]
+    for i in range(n - 2, -1, -1):
+        rightMax[i] = max(arr[i], rightMax[i + 1])
+
+    ans = 0
+    i = 0
+    j = 0
+
+    while i < n and j < n:
+        if leftMin[i] <= rightMax[j]:
+            ans = max(ans, j - i)
+            j += 1
+        else:
+            i += 1
+
+    return ans

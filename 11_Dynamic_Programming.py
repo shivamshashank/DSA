@@ -86,10 +86,7 @@ def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
     memo = {}
 
     def dfs(i: int, j: int) -> int:
-        if i >= m or j >= n:
-            return 0
-
-        if obstacleGrid[i][j] == 1:
+        if i >= m or j >= n or obstacleGrid[i][j] == 1:
             return 0
 
         if i == m - 1 and j == n - 1:
@@ -289,3 +286,25 @@ def mincostTickets(days: List[int], costs: List[int]) -> int:
         return ans
 
     return dfs(0)
+
+
+def maximumAmount(arr: list[int]) -> int:
+    """
+    Input: arr = [5, 3, 7, 10]
+    Output: 15
+    """
+
+    def dfs(arr: list[int], turn: str) -> int:
+        if len(arr) == 0:
+            return 0
+
+        if turn == "first":
+            take_left = arr[0] + dfs(arr[1:], "second")
+            take_right = arr[-1] + dfs(arr[:-1], "second")
+            return max(take_left, take_right)
+        else:
+            opp_take_left = dfs(arr[1:], "first")
+            opp_take_right = dfs(arr[:-1], "first")
+            return min(opp_take_left, opp_take_right)
+
+    return dfs(arr, "first")
