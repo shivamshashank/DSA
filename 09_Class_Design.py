@@ -113,8 +113,8 @@ class TimeMap:
                     e = mid - 1
 
             return ans
-        else:
-            return ""
+
+        return ""
 
 
 class RandomizedSet:

@@ -128,6 +128,57 @@ def findPeakElement(nums: List[int]) -> int:
     return -1
 
 
+def searchMatrix(matrix: List[List[int]], target: int) -> bool:
+    """
+    Input: matrix = [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], target = 3
+    Output: True
+    """
+    if not matrix or not matrix[0]:
+        return False
+
+    m, n = len(matrix), len(matrix[0])
+    s, e = 0, m * n - 1
+
+    while s <= e:
+        mid = s + (e - s) // 2
+        mid_val = matrix[mid // n][mid % n]
+
+        if mid_val == target:
+            return True
+        elif mid_val < target:
+            s = mid + 1
+        else:
+            e = mid - 1
+
+    return False
+
+
+def searchMatrixII(matrix: List[List[int]], target: int) -> bool:
+    """
+    Input: matrix = [[1, 4, 7, 11, 15],
+                     [2, 5, 8, 12, 19],
+                     [3, 6, 9, 16, 22],
+                     [10, 13, 14, 17, 24],
+                     [18, 21, 23, 26, 30]], target = 5
+    Output: True
+    """
+    if not matrix or not matrix[0]:
+        return False
+
+    m, n = len(matrix), len(matrix[0])
+    r, c = 0, n - 1
+
+    while r < m and c >= 0:
+        if matrix[r][c] == target:
+            return True
+        elif matrix[r][c] > target:
+            c -= 1
+        else:
+            r += 1
+
+    return False
+
+
 def canJump(nums: List[int]) -> bool:
     """
     Input: nums = [2, 3, 1, 1, 4]

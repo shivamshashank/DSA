@@ -137,10 +137,7 @@ def isSymmetric(root: Optional[TreeNode]) -> bool:
         if left is None and right is None:
             return True
 
-        if left is None or right is None:
-            return False
-
-        if left.val != right.val:
+        if left is None or right is None or left.val != right.val:
             return False
 
         return dfs(left.left, right.right) and dfs(left.right, right.left)

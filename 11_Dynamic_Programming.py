@@ -150,6 +150,34 @@ def minimumTotal(self, triangle: List[List[int]]) -> int:
     return dfs(0, 0)
 
 
+def maximalSquare(matrix: List[List[str]]) -> int:
+    """
+    Input: matrix = [["1","0","1","0","0"],
+                     ["1","0","1","1","1"],
+                     ["1","1","1","1","1"],
+                     ["1","0","0","1","0"]]
+    Output: 4
+    """
+    if not matrix or not matrix[0]:
+        return 0
+
+    rows, cols = len(matrix), len(matrix[0])
+    dp = [[0] * (cols + 1) for _ in range(rows + 1)]
+    max_side = 0
+
+    for r in range(rows):
+        for c in range(cols):
+            if matrix[r][c] == "1":
+                dp[r + 1][c + 1] = 1 + min(
+                    dp[r][c + 1],      # top
+                    dp[r + 1][c],      # left
+                    dp[r][c],          # top-left diagonal
+                )
+                max_side = max(max_side, dp[r + 1][c + 1])
+
+    return max_side * max_side
+
+
 def findTargetSumWays(self, nums: List[int], target: int) -> int:
     """
     Input: nums = [1, 1, 1, 1, 1], target = 3

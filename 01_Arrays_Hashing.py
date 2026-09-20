@@ -322,3 +322,133 @@ def maxIndexDiff(arr: list[int]) -> int:
             i += 1
 
     return ans
+
+
+def spiralOrder(matrix: List[List[int]]) -> List[int]:
+    """
+    Input: matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
+    """
+    if not matrix or not matrix[0]:
+        return []
+
+    res = []
+    top, bottom = 0, len(matrix) - 1
+    left, right = 0, len(matrix[0]) - 1
+
+    while top <= bottom and left <= right:
+        # Traverse left to right across top row
+        for c in range(left, right + 1):
+            res.append(matrix[top][c])
+        top += 1
+
+        # Traverse downwards along right column
+        for r in range(top, bottom + 1):
+            res.append(matrix[r][right])
+        right -= 1
+
+        # Traverse right to left across bottom row
+        if top <= bottom:
+            for c in range(right, left - 1, -1):
+                res.append(matrix[bottom][c])
+            bottom -= 1
+
+        # Traverse upwards along left column
+        if left <= right:
+            for r in range(bottom, top - 1, -1):
+                res.append(matrix[r][left])
+            left += 1
+
+    return res
+
+
+def rotate(matrix: List[List[int]]) -> None:
+    """
+    Do not return anything, modify matrix in-place instead.
+    Input: matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    Output: [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
+    """
+    n = len(matrix)
+
+    # Step 1: Transpose matrix
+    for i in range(n):
+        for j in range(i + 1, n):
+            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+
+    # Step 2: Reverse each row
+    for row in matrix:
+        row.reverse()
+
+
+def isValidSudoku(board: List[List[str]]) -> bool:
+    """
+    Input: board = [["5","3",".",".","7",".",".",".","."],
+                    ["6",".",".","1","9","5",".",".","."],
+                    [".","9","8",".",".",".",".","6","."],
+                    ["8",".",".",".","6",".",".",".","3"],
+                    ["4",".",".","8",".","3",".",".","1"],
+                    ["7",".",".",".","2",".",".",".","6"],
+                    [".","6",".",".",".",".","2","8","."],
+                    [".",".",".","4","1","9",".",".","5"],
+                    [".",".",".",".","8",".",".","7","9"]]
+    Output: True
+    """
+    rows = [set() for _ in range(9)]
+    cols = [set() for _ in range(9)]
+    boxes = [set() for _ in range(9)]
+
+    for r in range(9):
+        for c in range(9):
+            val = board[r][c]
+            if val == ".":
+                continue
+
+            box_idx = (r // 3) * 3 + (c // 3)
+
+            if val in rows[r] or val in cols[c] or val in boxes[box_idx]:
+                return False
+
+            rows[r].add(val)
+            cols[c].add(val)
+            boxes[box_idx].add(val)
+
+    return True
+
+
+def gameOfLife(board: List[List[int]]) -> None:
+    """
+    Do not return anything, modify board in-place instead.
+    Input: board = [[0, 1, 0], [0, 0, 1], [1, 1, 1], [0, 0, 0]]
+    Output: [[0, 0, 0], [1, 0, 1], [0, 1, 1], [0, 1, 0]]
+    """
+    # State transitions:
+    # 0 -> 0: 0
+    # 1 -> 1: 1
+    # 1 -> 0: 2 (alive -> dead)
+    # 0 -> 1: 3 (dead -> alive)
+    m, n = len(board), len(board[0])
+
+    for r in range(m):
+        for c in range(n):
+            live_neighbors = 0
+            for dr in (-1, 0, 1):
+                for dc in (-1, 0, 1):
+                    if dr == 0 and dc == 0:
+                        continue
+                    nr, nc = r + dr, c + dc
+                    if 0 <= nr < m and 0 <= nc < n and board[nr][nc] in (1, 2):
+                        live_neighbors += 1
+
+            if board[r][c] == 1:
+                if live_neighbors < 2 or live_neighbors > 3:
+                    board[r][c] = 2
+            else:
+                if live_neighbors == 3:
+                    board[r][c] = 3
+
+    for r in range(m):
+        for c in range(n):
+            if board[r][c] == 2:
+                board[r][c] = 0
+            elif board[r][c] == 3:
+                board[r][c] = 1

@@ -177,3 +177,36 @@ def mergeInBetween(list1: ListNode, a: int, b: int, list2: ListNode) -> ListNode
     head.next = endNode
 
     return list1
+
+
+def addTwoNumbers(l1: ListNode | None, l2: ListNode | None) -> ListNode | None:
+    """
+    Input: l1 = [2,4,3], l2 = [5,6,4]
+    Output: [7,0,8]
+    Explanation: 342 + 465 = 807
+    """
+    dummy = ListNode()
+    current = dummy
+    carry = 0
+
+    while True:
+        # Base case
+        if l1 is None and l2 is None and carry == 0:
+            return dummy.next
+
+        value1 = 0 if l1 is None else l1.val
+        value2 = 0 if l2 is None else l2.val
+
+        total = value1 + value2 + carry
+
+        digit = total % 10
+        carry = total // 10
+
+        current.next = ListNode(digit)
+        current = current.next
+
+        if l1 is not None:
+            l1 = l1.next
+
+        if l2 is not None:
+            l2 = l2.next

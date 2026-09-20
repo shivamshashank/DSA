@@ -170,6 +170,87 @@ def orangesRotting(grid: List[List[int]]) -> int:
     return minutes if fresh == 0 else -1
 
 
+def solve(board: List[List[str]]) -> None:
+    """
+    Do not return anything, modify board in-place instead.
+    Input: board = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]
+    Output: [["X","X","X","X"],["X","X","X","X"],["X","X","X","X"],["X","O","X","X"]]
+    """
+    if not board or not board[0]:
+        return
+
+    rows, cols = len(board), len(board[0])
+
+    def dfs(r: int, c: int) -> None:
+        if r < 0 or r >= rows or c < 0 or c >= cols or board[r][c] != "O":
+            return
+        board[r][c] = "E"  # Mark as escaped / connected to border
+        dfs(r + 1, c)
+        dfs(r - 1, c)
+        dfs(r, c + 1)
+        dfs(r, c - 1)
+
+    # Traverse boundary cells
+    for r in range(rows):
+        if board[r][0] == "O":
+            dfs(r, 0)
+        if board[r][cols - 1] == "O":
+            dfs(r, cols - 1)
+
+    for c in range(cols):
+        if board[0][c] == "O":
+            dfs(0, c)
+        if board[rows - 1][c] == "O":
+            dfs(rows - 1, c)
+
+    # Flip remaining 'O' to 'X' (captured), and restore 'E' to 'O'
+    for r in range(rows):
+        for c in range(cols):
+            if board[r][c] == "O":
+                board[r][c] = "X"
+            elif board[r][c] == "E":
+                board[r][c] = "O"
+
+
+def pacificAtlantic(heights: List[List[int]]) -> List[List[int]]:
+    """
+    Input: heights = [[1, 2, 2, 3, 5],
+                      [3, 2, 3, 4, 4],
+                      [2, 4, 5, 3, 1],
+                      [6, 7, 1, 4, 5],
+                      [5, 1, 1, 2, 4]]
+    Output: [[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]]
+    """
+    if not heights or not heights[0]:
+        return []
+
+    rows, cols = len(heights), len(heights[0])
+    pacific = set()
+    atlantic = set()
+
+    def dfs(r: int, c: int, visited: set) -> None:
+        visited.add((r, c))
+        for dr, dc in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+            nr, nc = r + dr, c + dc
+            if (
+                0 <= nr < rows
+                and 0 <= nc < cols
+                and (nr, nc) not in visited
+                and heights[nr][nc] >= heights[r][c]
+            ):
+                dfs(nr, nc, visited)
+
+    for r in range(rows):
+        dfs(r, 0, pacific)
+        dfs(r, cols - 1, atlantic)
+
+    for c in range(cols):
+        dfs(0, c, pacific)
+        dfs(rows - 1, c, atlantic)
+
+    return [list(coord) for coord in (pacific & atlantic)]
+
+
 def maximumDetonation(bombs: List[List[int]]) -> int:
     """
     Input: bombs = [[2, 1, 3], [6, 1, 4]]

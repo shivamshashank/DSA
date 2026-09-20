@@ -1,20 +1,20 @@
 # 📊 LeetCode & Problem Solving Progress & Summary
 
 ### 📈 Overall Progress
-- **Total Questions in Repository:** **113** (104 LeetCode + 9 Non-LeetCode)
-- **Completed Questions:** **112**
+- **Total Questions in Repository:** **123** (114 LeetCode + 9 Non-LeetCode)
+- **Completed Questions:** **122**
 - **Pending / Incomplete Questions:** **1** (`constructFromPreorderAndPostorder` in [`07_Trees.py`](./07_Trees.py#L287-L294))
 
 ### 🎯 Difficulty Breakdown (Completed)
 - 🟢 **Easy:** 21 questions (17 LeetCode + 4 Non-LeetCode)
-- 🟡 **Medium:** 80 questions (75 LeetCode + 5 Non-LeetCode)
+- 🟡 **Medium:** 90 questions (85 LeetCode + 5 Non-LeetCode)
 - 🔴 **Hard:** 11 questions (11 LeetCode)
 
 ---
 
 ## 📁 Breakdown by File
 
-### 1. [`01_Arrays_Hashing.py`](./01_Arrays_Hashing.py) — **16/16 Done**
+### 1. [`01_Arrays_Hashing.py`](./01_Arrays_Hashing.py) — **20/20 Done**
 
 | Function | Question / Topic | Difficulty | Status |
 | :--- | :--- | :---: | :---: |
@@ -34,6 +34,10 @@
 | `largestNumber` | [LC 179: Largest Number](./01_Arrays_Hashing.py#L243-L261) | 🟡 Medium | ✅ Done |
 | `firstMissingPositive` | [LC 41: First Missing Positive](./01_Arrays_Hashing.py#L264-L289) | 🔴 Hard | ✅ Done |
 | `maxIndexDiff` | [Maximum Index Difference](./01_Arrays_Hashing.py#L292-L324) | 🟡 Medium | ✅ Done |
+| `spiralOrder` | [LC 54: Spiral Matrix](./01_Arrays_Hashing.py#L327-L362) | 🟡 Medium | ✅ Done |
+| `rotate` | [LC 48: Rotate Image](./01_Arrays_Hashing.py#L365-L380) | 🟡 Medium | ✅ Done |
+| `isValidSudoku` | [LC 36: Valid Sudoku](./01_Arrays_Hashing.py#L383-L415) | 🟡 Medium | ✅ Done |
+| `gameOfLife` | [LC 289: Game of Life](./01_Arrays_Hashing.py#L418-L454) | 🟡 Medium | ✅ Done |
 
 ---
 
@@ -54,7 +58,7 @@
 
 ---
 
-### 3. [`03_BinarySearch_Greedy.py`](./03_BinarySearch_Greedy.py) — **9/9 Done**
+### 3. [`03_BinarySearch_Greedy.py`](./03_BinarySearch_Greedy.py) — **11/11 Done**
 
 | Function | Question / Topic | Difficulty | Status |
 | :--- | :--- | :---: | :---: |
@@ -63,10 +67,12 @@
 | `minEatingSpeed` | [LC 875: Koko Eating Bananas](./03_BinarySearch_Greedy.py#L54-L77) | 🟡 Medium | ✅ Done |
 | `searchInRotatedSortedArray` | [LC 33: Search in Rotated Sorted Array](./03_BinarySearch_Greedy.py#L80-L106) | 🟡 Medium | ✅ Done |
 | `findPeakElement` | [LC 162: Find Peak Element](./03_BinarySearch_Greedy.py#L109-L128) | 🟡 Medium | ✅ Done |
-| `canJump` | [LC 55: Jump Game](./03_BinarySearch_Greedy.py#L131-L141) | 🟡 Medium | ✅ Done |
-| `jump` | [LC 45: Jump Game II](./03_BinarySearch_Greedy.py#L144-L159) | 🟡 Medium | ✅ Done |
-| `leastInterval` | [LC 621: Task Scheduler](./03_BinarySearch_Greedy.py#L162-L173) | 🟡 Medium | ✅ Done |
-| `canCompleteCircuit` | [LC 134: Gas Station](./03_BinarySearch_Greedy.py#L176-L193) | 🟡 Medium | ✅ Done |
+| `searchMatrix` | [LC 74: Search a 2D Matrix](./03_BinarySearch_Greedy.py#L131-L153) | 🟡 Medium | ✅ Done |
+| `searchMatrixII` | [LC 240: Search a 2D Matrix II](./03_BinarySearch_Greedy.py#L156-L179) | 🟡 Medium | ✅ Done |
+| `canJump` | [LC 55: Jump Game](./03_BinarySearch_Greedy.py#L182-L192) | 🟡 Medium | ✅ Done |
+| `jump` | [LC 45: Jump Game II](./03_BinarySearch_Greedy.py#L195-L210) | 🟡 Medium | ✅ Done |
+| `leastInterval` | [LC 621: Task Scheduler](./03_BinarySearch_Greedy.py#L213-L224) | 🟡 Medium | ✅ Done |
+| `canCompleteCircuit` | [LC 134: Gas Station](./03_BinarySearch_Greedy.py#L227-L244) | 🟡 Medium | ✅ Done |
 
 ---
 
@@ -133,7 +139,7 @@
 
 ---
 
-### 8. [`08_Graphs.py`](./08_Graphs.py) — **12/12 Done**
+### 8. [`08_Graphs.py`](./08_Graphs.py) — **14/14 Done**
 
 | Function | Question / Topic | Difficulty | Status |
 | :--- | :--- | :---: | :---: |
@@ -141,14 +147,16 @@
 | `bfsOfGraph` | [Graph BFS Traversal Utility](./08_Graphs.py#L34-L61) | 🟢 Easy | ✅ Done |
 | `numIslandsDFS` / `numIslandsBFS` | [LC 200: Number of Islands](./08_Graphs.py#L64-L135) | 🟡 Medium | ✅ Done |
 | `orangesRotting` | [LC 994: Rotting Oranges](./08_Graphs.py#L138-L170) | 🟡 Medium | ✅ Done |
-| `maximumDetonation` | [LC 2101: Detonate the Maximum Bombs](./08_Graphs.py#L173-L201) | 🟡 Medium | ✅ Done |
-| `numberOfProvinces` | [LC 547: Number of Provinces](./08_Graphs.py#L204-L229) | 🟡 Medium | ✅ Done |
-| `cloneGraph` | [LC 133: Clone Graph](./08_Graphs.py#L239-L261) | 🟡 Medium | ✅ Done |
-| `courseSchedule` | [LC 207: Course Schedule](./08_Graphs.py#L264-L299) | 🟡 Medium | ✅ Done |
-| `findOrder` | [LC 210: Course Schedule II](./08_Graphs.py#L305-L329) | 🟡 Medium | ✅ Done |
-| `networkDelayTime` | [LC 743: Network Delay Time](./08_Graphs.py#L335-L359) | 🟡 Medium | ✅ Done |
-| `accountsMerge` | [LC 721: Accounts Merge](./08_Graphs.py#L390-L418) | 🟡 Medium | ✅ Done |
-| `ladderLength` | [LC 127: Word Ladder](./08_Graphs.py#L424-L459) | 🔴 Hard | ✅ Done |
+| `solve` | [LC 130: Surrounded Regions](./08_Graphs.py#L173-L212) | 🟡 Medium | ✅ Done |
+| `pacificAtlantic` | [LC 417: Pacific Atlantic Water Flow](./08_Graphs.py#L215-L251) | 🟡 Medium | ✅ Done |
+| `maximumDetonation` | [LC 2101: Detonate the Maximum Bombs](./08_Graphs.py#L254-L282) | 🟡 Medium | ✅ Done |
+| `numberOfProvinces` | [LC 547: Number of Provinces](./08_Graphs.py#L285-L310) | 🟡 Medium | ✅ Done |
+| `cloneGraph` | [LC 133: Clone Graph](./08_Graphs.py#L320-L342) | 🟡 Medium | ✅ Done |
+| `courseSchedule` | [LC 207: Course Schedule](./08_Graphs.py#L345-L380) | 🟡 Medium | ✅ Done |
+| `findOrder` | [LC 210: Course Schedule II](./08_Graphs.py#L386-L410) | 🟡 Medium | ✅ Done |
+| `networkDelayTime` | [LC 743: Network Delay Time](./08_Graphs.py#L416-L440) | 🟡 Medium | ✅ Done |
+| `accountsMerge` | [LC 721: Accounts Merge](./08_Graphs.py#L471-L499) | 🟡 Medium | ✅ Done |
+| `ladderLength` | [LC 127: Word Ladder](./08_Graphs.py#L505-L540) | 🔴 Hard | ✅ Done |
 
 ---
 
@@ -165,7 +173,7 @@
 
 ---
 
-### 10. [`10_Backtracking.py`](./10_Backtracking.py) — **9/9 Done**
+### 10. [`10_Backtracking.py`](./10_Backtracking.py) — **10/10 Done**
 
 | Function | Question / Topic | Difficulty | Status |
 | :--- | :--- | :---: | :---: |
@@ -178,10 +186,11 @@
 | `combinationSumII` | [LC 40: Combination Sum II](./10_Backtracking.py#L138-L162) | 🟡 Medium | ✅ Done |
 | `generatePartitions` | [LC 131: Palindrome Partitioning](./10_Backtracking.py#L165-L185) | 🟡 Medium | ✅ Done |
 | `wordBreak` | [LC 139: Word Break](./10_Backtracking.py#L188-L205) | 🟡 Medium | ✅ Done |
+| `exist` | [LC 79: Word Search](./10_Backtracking.py#L208-L248) | 🟡 Medium | ✅ Done |
 
 ---
 
-### 11. [`11_Dynamic_Programming.py`](./11_Dynamic_Programming.py) — **13/13 Done**
+### 11. [`11_Dynamic_Programming.py`](./11_Dynamic_Programming.py) — **14/14 Done**
 
 | Function | Question / Topic | Difficulty | Status |
 | :--- | :--- | :---: | :---: |
@@ -192,12 +201,13 @@
 | `uniquePathsWithObstacles` | [LC 63: Unique Paths II](./11_Dynamic_Programming.py#L80-L105) | 🟡 Medium | ✅ Done |
 | `minPathSum` | [LC 64: Minimum Path Sum](./11_Dynamic_Programming.py#L108-L130) | 🟡 Medium | ✅ Done |
 | `minimumTotal` | [LC 120: Triangle](./11_Dynamic_Programming.py#L133-L153) | 🟡 Medium | ✅ Done |
-| `findTargetSumWays` | [LC 494: Target Sum](./11_Dynamic_Programming.py#L156-L178) | 🟡 Medium | ✅ Done |
-| `canPartition` | [LC 416: Partition Equal Subset Sum](./11_Dynamic_Programming.py#L181-L208) | 🟡 Medium | ✅ Done |
-| `lengthOfLIS` | [LC 300: Longest Increasing Subsequence](./11_Dynamic_Programming.py#L211-L237) | 🟡 Medium | ✅ Done |
-| `coinChange` | [LC 322: Coin Change](./11_Dynamic_Programming.py#L240-L266) | 🟡 Medium | ✅ Done |
-| `mincostTickets` | [LC 983: Minimum Cost For Tickets](./11_Dynamic_Programming.py#L269-L291) | 🟡 Medium | ✅ Done |
-| `maximumAmount` | [Optimal Strategy for a Game (Maximum Amount)](./11_Dynamic_Programming.py#L294-L313) | 🟡 Medium | ✅ Done |
+| `maximalSquare` | [LC 221: Maximal Square](./11_Dynamic_Programming.py#L153-L178) | 🟡 Medium | ✅ Done |
+| `findTargetSumWays` | [LC 494: Target Sum](./11_Dynamic_Programming.py#L181-L203) | 🟡 Medium | ✅ Done |
+| `canPartition` | [LC 416: Partition Equal Subset Sum](./11_Dynamic_Programming.py#L206-L233) | 🟡 Medium | ✅ Done |
+| `lengthOfLIS` | [LC 300: Longest Increasing Subsequence](./11_Dynamic_Programming.py#L236-L262) | 🟡 Medium | ✅ Done |
+| `coinChange` | [LC 322: Coin Change](./11_Dynamic_Programming.py#L265-L291) | 🟡 Medium | ✅ Done |
+| `mincostTickets` | [LC 983: Minimum Cost For Tickets](./11_Dynamic_Programming.py#L294-L316) | 🟡 Medium | ✅ Done |
+| `maximumAmount` | [Optimal Strategy for a Game (Maximum Amount)](./11_Dynamic_Programming.py#L319-L338) | 🟡 Medium | ✅ Done |
 
 ---
 

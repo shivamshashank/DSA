@@ -203,3 +203,46 @@ def wordBreak(s: str, wordDict: List[str]) -> bool:
         return False
 
     return dfs(0, [])
+
+
+def exist(board: List[List[str]], word: str) -> bool:
+    """
+    Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
+    Output: True
+    """
+    rows, cols = len(board), len(board[0])
+
+    def dfs(r: int, c: int, idx: int) -> bool:
+        if idx == len(word):
+            return True
+
+        if (
+            r < 0
+            or r >= rows
+            or c < 0
+            or c >= cols
+            or board[r][c] != word[idx]
+        ):
+            return False
+
+        # Mark cell as visited
+        temp = board[r][c]
+        board[r][c] = "#"
+
+        found = (
+            dfs(r + 1, c, idx + 1)
+            or dfs(r - 1, c, idx + 1)
+            or dfs(r, c + 1, idx + 1)
+            or dfs(r, c - 1, idx + 1)
+        )
+
+        # Backtrack
+        board[r][c] = temp
+        return found
+
+    for r in range(rows):
+        for c in range(cols):
+            if board[r][c] == word[0] and dfs(r, c, 0):
+                return True
+
+    return False
